@@ -69,8 +69,13 @@ echo "LoadTheme "$SCRIPTPATH"/theme.toml" > $XDG_RUNTIME_DIR/leftwm/commands.pip
 
 
 # Set background
+#if [ -x "$(command -v feh)" ]; then
+#  feh --randomize --bg-fill /usr/share/backgrounds/*
+#fi
+
+# Set background
 if [ -x "$(command -v feh)" ]; then
-  feh --randomize --bg-fill /usr/share/backgrounds/*
+  feh --bg-fill "$SCRIPTPATH"/background.jpg
 fi
 
 #mainbar

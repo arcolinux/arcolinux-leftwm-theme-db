@@ -26,11 +26,11 @@ keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 if [ -f "$SCRIPTPATH/sxhkd/sxhkdrc" ] ; then
   # check if there is a keybinds-folder inside your personal theme and use it
   # to use the standard keybinds, delete the dir sxhkd inside your theme
-  sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc & 
+  sxhkd -c ~/.config/leftwm/themes/current/sxhkd/sxhkdrc &
 else
   # standard keybinds
   sxhkd -c ~/.config/leftwm/sxhkd/sxhkdrc &
-fi    
+fi
 
 # diversity of apps to start
 nm-applet &

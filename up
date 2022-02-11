@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+#this is your scriptpath
+# echo $SCRIPTPATH
 
 # Down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
@@ -13,13 +15,13 @@ ln -s "$SCRIPTPATH"/down /tmp/leftwm-theme-down
 #setxkbmap -layout be
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
-#if [ $keybLayout = "be" ]; then
-###  cp "$SCRIPTPATH"/config/config-azerty.toml ~/.config/leftwm/config.toml
-#  leftwm-command "LoadTheme "$SCRIPTPATH"/config/config-azerty.toml"
-#else
-###  cp "$SCRIPTPATH"/config/config-qwerty.toml ~/.config/leftwm/config.toml
-#  leftwm-command "LoadTheme "$SCRIPTPATH"/config/config-querty.toml"
-###fi
+if [ $keybLayout = "be" ]; then
+  cp ~/.config/leftwm/config-azerty.toml ~/.config/leftwm/config.toml
+else
+  cp ~/.config/leftwm/config-qwerty.toml ~/.config/leftwm/config.toml
+fi
+
+leftwm-command "LoadTheme "$SCRIPTPATH"/config.toml"
 
 # keybindings daemon
 # put your personal keybinds inside your theme and use those

@@ -16,9 +16,7 @@ ln -s "$SCRIPTPATH"/down /tmp/leftwm-theme-down
 keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
 if [ $keybLayout = "be" ]; then
-  cp ~/.config/leftwm/config-azerty.toml ~/.config/leftwm/config.toml
-else
-  cp ~/.config/leftwm/config-qwerty.toml ~/.config/leftwm/config.toml
+  cp ~/.config/leftwm/config-azerty.ron ~/.config/leftwm/config.ron
 fi
 
 leftwm-command "LoadTheme "$SCRIPTPATH"/config.toml"

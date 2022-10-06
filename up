@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 #this is your scriptpath
 # echo $SCRIPTPATH
@@ -9,7 +8,7 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
     /tmp/leftwm-theme-down
     rm /tmp/leftwm-theme-down
 fi
-ln -s "$SCRIPTPATH"/down /tmp/leftwm-theme-down
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
 #change your keyboard if you need it - azerty or qwerty
 #setxkbmap -layout be
@@ -19,7 +18,8 @@ if [ $keybLayout = "be" ]; then
   cp ~/.config/leftwm/config-azerty.ron ~/.config/leftwm/config.ron
 fi
 
-leftwm command "LoadTheme "$SCRIPTPATH"/config.ron"
+#not using wal for leftwm theming
+leftwm command "LoadTheme $SCRIPTPATH/theme.ron"
 
 # keybindings daemon
 # put your personal keybinds inside your theme and use those
@@ -68,12 +68,8 @@ if [ -x "$(command -v picom)" ]; then
   #picom &> /dev/null &
   #picom --experimental-backends &> /dev/null &
 elif [ -x "$(command -v compton)" ]; then
-  compton &> /dev/null &
+  compton --config $HOME/.config/leftwm/themes/current/compton.conf &> /dev/null &
 fi
-
-# Set the theme.ron config
-leftwm command "LoadTheme $SCRIPTPATH/theme.ron"
-
 
 # Set background
 #if [ -x "$(command -v feh)" ]; then
